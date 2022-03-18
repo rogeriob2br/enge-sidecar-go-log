@@ -1,0 +1,8 @@
+ghz -c 1 -n 1 --insecure \
+  --timeout 20m \
+  --proto proto/logcanal.proto \
+  --call logcanal.LogCanalService.sink \
+  --stream-call-count=1000000 \
+  --stream-call-duration=20m \
+  -d '{"message": {"message": "Hello","timestamp": "2006-01-02T15:04:05.999999999Z","service": {"name": "Hello","version": "Hello"},"tags": "{{randomString 8 }}"}}' \
+  localhost:50001

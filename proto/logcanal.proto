@@ -1,0 +1,32 @@
+syntax = "proto3";
+package logcanal;
+
+option go_package = "proto/logcanal.proto;logcanal_proto";
+
+import "google/protobuf/timestamp.proto";
+
+service LogCanalService{
+    rpc sink(stream MessageRequest) returns (ResponseStatus);
+}
+
+message MessageRequest{
+    Message message = 1;
+}
+
+message Message{
+    string message = 1;
+    google.protobuf.Timestamp timestamp =2;
+    Service service = 3;
+    string tags=4;
+
+}
+message Service{
+    string name =1;
+    string version =2;
+}
+
+message ResponseStatus {
+    // The number of points received.
+    int32 FallBackEnabled = 1;
+
+}
